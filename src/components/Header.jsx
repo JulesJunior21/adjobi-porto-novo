@@ -80,7 +80,7 @@ function BetaPopup({ isOpen, onClose }) {
 
   return (
     <>
-      <div className="fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity" onClick={onClose}></div>
+      <div className="fixed inset-0 bg-black bg-opacity-30 backdrop-blur-sm z-50 transition-opacity" onClick={onClose}></div>
       <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-2xl p-8 z-50 max-w-md w-full">
         <div className="flex flex-col items-center">
           <div className="mb-6 text-center">
