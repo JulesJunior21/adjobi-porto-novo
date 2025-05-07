@@ -68,16 +68,16 @@ function QuoteIcon(props) {
 export function Testimonials() {
   return (
     <section
-      id="testimonials"
+      id="temoignages"
       aria-label="Ce que nos membres disent de nous"
       className="bg-slate-50 py-20 sm:py-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="font-display text-3xl text-center  tracking-tight text-slate-900 sm:text-4xl">
             Ils parlent de nous
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
+          <p className="mt-4  text-center text-lg tracking-tight text-slate-700">
             ADJOBI Porto-Novo inspire et rassemble des citoyens de tous horizons autour d'une cause 
             commune : faire rayonner notre belle cité historique et améliorer le cadre de vie de ses habitants.
           </p>

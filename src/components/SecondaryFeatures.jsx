@@ -176,7 +176,6 @@ function FeaturesDesktop() {
               />
             ))}
           </TabList>
-          <TabPanels className="relative mt-20 overflow-hidden rounded-4xl bg-slate-200 px-14 py-16 xl:px-16">
             <div className="-mx-5 flex">
               {features.map((feature, featureIndex) => (
                 <TabPanel
@@ -194,7 +193,6 @@ function FeaturesDesktop() {
               ))}
             </div>
             <div className="pointer-events-none absolute inset-0 rounded-4xl ring-1 ring-slate-900/10 ring-inset" />
-          </TabPanels>
         </>
       )}
     </TabGroup>
@@ -204,21 +202,20 @@ function FeaturesDesktop() {
 export function SecondaryFeatures() {
   return (
     <section
-      id="secondary-features"
+      id="nos-actions"
       aria-label="Piliers d'action de notre association"
       className="pt-20 pb-14 sm:pt-32 sm:pb-20 lg:pb-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="font-display text-3xl tracking-tight text-center text-slate-900 sm:text-4xl">
             Nos engagements au service de Porto-Novo
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
+          <p className="mt-4 text-lg tracking-tight text-center  text-slate-700">
             ADJOBI Porto-Novo se mobilise autour de trois piliers d'action pour 
             renforcer la cohésion sociale et améliorer le cadre de vie de notre cité historique.
           </p>
         </div>
-        <FeaturesMobile />
         <FeaturesDesktop />
       </Container>
     </section>

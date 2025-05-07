@@ -34,7 +34,7 @@ function AccordionItem({ faq, index, isOpen, toggleAccordion }) {
   return (
     <div className="border-b border-slate-200">
       <button
-        className="flex w-full items-center justify-between py-4 text-left font-display text-lg text-slate-900 transition-all hover:text-blue-600"
+        className="flex w-full items-center justify-between py-4 text-left font-display text-lg text-slate-900 transition-all hover:text-green-600"
         onClick={() => toggleAccordion(index)}
         aria-expanded={isOpen}
       >
@@ -81,7 +81,7 @@ export function Faqs() {
         <div className="mx-auto max-w-3xl text-center mb-16">
           <h2
             id="faq-title"
-            className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl"
+            className="font-display text-center text-3xl tracking-tight text-slate-900 sm:text-4xl"
           >
             Informations utiles
           </h2>
@@ -90,7 +90,7 @@ export function Faqs() {
           </p>
         </div>
         
-        <div className="mx-auto max-w-3xl">
+        <div className="mx-auto text-center max-w-3xl">
           <div className="w-full">
             {FAQData.map((faq, index) => (
               <AccordionItem
