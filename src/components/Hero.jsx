@@ -33,7 +33,7 @@ export function Hero() {
         des habitants et promouvoir notre patrimoine commun.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="/adhesion">Découvrir notre mission</Button>
+        <Button href="#nos-realisations">Découvrir notre mission</Button>
       </div>
     </Container>
   )
