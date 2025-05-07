@@ -8,6 +8,7 @@ import {
   PopoverPanel,
 } from '@headlessui/react'
 import clsx from 'clsx'
+import { useState } from 'react'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
@@ -74,9 +75,42 @@ function MobileNavigation() {
   )
 }
 
-export function Header() {
+function BetaPopup({ isOpen, onClose }) {
+  if (!isOpen) return null;
+
   return (
-    <header className="py-10">
+    <>
+      <div className="fixed inset-0 bg-black bg-opacity-50 z-50 transition-opacity" onClick={onClose}></div>
+      <div className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-xl shadow-2xl p-8 z-50 max-w-md w-full">
+        <div className="flex flex-col items-center">
+          <div className="mb-6 text-center">
+            <h3 className="text-2xl font-bold text-slate-900">Fonctionnalité à venir</h3>
+            <p className="mt-2 text-slate-600">Notre formulaire d'adhésion sera disponible très prochainement. Nous vous remercions de votre patience !</p>
+          </div>
+          <button 
+            onClick={onClose}
+            className="px-4 py-2 bg-[#58c469] hover:bg-[#4ab059] text-white rounded-md font-medium"
+          >
+            Fermer
+          </button>
+        </div>
+      </div>
+    </>
+  );
+}
+
+export function Header() {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  return (
+    <header className="py-10 relative">
+      {/* Bannière beta */}
+      <div className="absolute top-0 right-0 overflow-hidden w-28 h-28 z-10">
+        <div className="absolute top-[14px] right-[-35px] rotate-45 bg-[#ff6b6b] text-white py-1 px-10 text-center text-sm font-bold shadow-md">
+          BETA
+        </div>
+      </div>
+
       <Container>
         <nav className="relative z-50 flex justify-between">
           <div className="flex items-center md:gap-x-12">
@@ -93,7 +127,7 @@ export function Header() {
               <NavLink href="#"></NavLink>
             </div>
             <Button 
-              href="#contact" 
+              onClick={() => setIsPopupOpen(true)}
               color="blue" 
               className="!bg-[#58c469] !hover:bg-[#4ab059] text-white"
             >
@@ -107,6 +141,12 @@ export function Header() {
           </div>
         </nav>
       </Container>
+
+      {/* Popup */}
+      <BetaPopup 
+        isOpen={isPopupOpen} 
+        onClose={() => setIsPopupOpen(false)} 
+      />
     </header>
   )
 }
