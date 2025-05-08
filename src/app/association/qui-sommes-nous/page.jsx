@@ -2,10 +2,11 @@
 
 import { Header } from '@/components/Header'
 import { Footer } from '@/components/Footer'
+import { Container } from '@/components/Container'
 
 // Import des images locales
 import DSC0429 from '@/images/DSC_0429.JPG'
-import DSC1406 from '@/images/DSC_1406.JPG'
+import DSC1406 from '@/images/DSC_1610.JPG'
 import DSC1573 from '@/images/DSC_1573.JPG'
 import DSC1581 from '@/images/DSC_1581.JPG'
 import DSC1601 from '@/images/DSC_1601.JPG'
@@ -18,32 +19,35 @@ export default function QuiSommesNous() {
       <main className="isolate">
         {/* Hero section */}
         <div className="relative isolate -z-10 overflow-hidden bg-gradient-to-b from-indigo-100/20 pt-14">
-          <div
-            aria-hidden="true"
-            className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
-          />
-          <div className="mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8">
-            <div className="mx-auto max-w-2xl lg:mx-0 lg:grid lg:max-w-none lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8 xl:grid-cols-1 xl:grid-rows-1 xl:gap-x-8">
-              <h1 className="max-w-2xl text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl lg:col-span-2 xl:col-auto">
-                Qui sommes-nous
-              </h1>
-              <div className="mt-6 max-w-xl lg:mt-0 xl:col-end-1 xl:row-start-1">
-                <p className="text-lg font-medium text-pretty text-gray-500 sm:text-xl/8">
-                  ADJOBI Porto-Novo est une association citoyenne fondée par des habitants passionnés 
-                  par leur ville et désireux de contribuer à son développement harmonieux et durable.
-                  Notre mission est de valoriser le patrimoine architectural et culturel unique de Porto-Novo,
-                  tout en œuvrant pour améliorer le cadre de vie des habitants.
-                </p>
-              </div>
-              <img
-                alt="Association ADJOBI en action"
-                src={DSC1406.src}
-                className="mt-10 aspect-6/5 w-full max-w-lg rounded-2xl object-cover sm:mt-16 lg:mt-0 lg:max-w-none xl:row-span-2 xl:row-end-2 xl:mt-36"
-              />
-            </div>
-          </div>
-          <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
-        </div>
+  <div
+    aria-hidden="true"
+    className="absolute inset-y-0 right-1/2 -z-10 -mr-96 w-[200%] origin-top-right skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:-mr-80 lg:-mr-96"
+  />
+  <div className="mx-auto max-w-7xl px-6 py-32 sm:py-40 lg:px-8">
+    <div className="mx-auto grid grid-cols-1 gap-x-8 gap-y-16 lg:grid-cols-2 lg:items-start">
+      <div className="max-w-2xl">
+        <p className="text-base font-semibold text-[#58c469]">Notre parcours</p>
+        <h1 className="mt-2 text-4xl font-semibold tracking-tight text-pretty text-slate-900 sm:text-5xl">
+          Qui sommes-nous ?
+        </h1>
+        <p className="mt-6 text-xl text-balance text-slate-700">
+          Nous avons pour mission de valoriser le patrimoine architectural et culturel unique de 
+          Porto-Novo, tout en œuvrant pour améliorer le cadre de vie des habitants, favoriser la 
+          cohésion sociale et encourager une citoyenneté active.
+        </p>
+      </div>
+      
+      <div className="lg:justify-end lg:flex">
+        <img
+          alt="Association ADJOBI en action"
+          src={DSC1406.src}
+          className="aspect-6/5 w-full max-w-lg rounded-2xl object-cover lg:max-w-none"
+        />
+      </div>
+    </div>
+  </div>
+  <div className="absolute inset-x-0 bottom-0 -z-10 h-24 bg-gradient-to-t from-white sm:h-32" />
+</div>
 
         {/* Notre mission */}
         <div className="mx-auto mt-32 max-w-7xl px-6 sm:mt-40 lg:px-8">
