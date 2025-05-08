@@ -23,6 +23,35 @@ function MobileNavLink({ href, children }) {
   )
 }
 
+function MobileNavSubmenu({ title, links }) {
+  return (
+    <Popover className="relative w-full">
+      {({ open }) => (
+        <>
+          <PopoverButton className="flex w-full items-center justify-between p-2">
+            <span>{title}</span>
+            <svg
+              className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </PopoverButton>
+          <PopoverPanel className="pl-4 py-2 space-y-1">
+            {links.map((link) => (
+              <MobileNavLink key={link.href} href={link.href}>
+                {link.label}
+              </MobileNavLink>
+            ))}
+          </PopoverPanel>
+        </>
+      )}
+    </Popover>
+  )
+}
+
 function MobileNavIcon({ open }) {
   return (
     <svg
@@ -50,6 +79,49 @@ function MobileNavIcon({ open }) {
   )
 }
 
+const navigationItems = [
+  {
+    title: "L'association",
+    submenu: [
+      { label: "Qui sommes-nous", href: "#qui-sommes-nous" },
+      { label: "Notre histoire", href: "#notre-histoire" },
+      { label: "L'équipe", href: "#equipe" },
+    ],
+  },
+  {
+    title: "Assemblées & réunions",
+    submenu: [
+      { label: "Calendrier", href: "#calendrier" },
+      { label: "Procès-verbaux", href: "#proces-verbaux" },
+    ],
+  },
+  {
+    title: "Actions & activités",
+    submenu: [
+      { label: "Projets en cours", href: "#projets" },
+      { label: "Événements", href: "#evenements" },
+      { label: "Galerie", href: "#galerie" },
+    ],
+  },
+  {
+    title: "Commissions",
+    submenu: [
+      { label: "Liste des commissions", href: "#commissions" },
+      { label: "S'engager", href: "#engager" },
+    ],
+  },
+  {
+    title: "Documents",
+    submenu: [
+      { label: "Statuts", href: "#statuts" },
+      { label: "Règlement intérieur", href: "#reglement" },
+      { label: "Rapports annuels", href: "#rapports" },
+    ],
+  },
+  // Liens simples (sans sous-menu)
+  { title: "Témoignages", href: "#temoignages" },
+];
+
 function MobileNavigation() {
   return (
     <Popover>
@@ -67,10 +139,57 @@ function MobileNavigation() {
         transition
         className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-closed:scale-95 data-closed:opacity-0 data-enter:duration-150 data-enter:ease-out data-leave:duration-100 data-leave:ease-in"
       >
-        <MobileNavLink href="#nos-actions">Nos actions</MobileNavLink>
-        <MobileNavLink href="#temoignages">Témoignages</MobileNavLink>
+        {navigationItems.map((item) => (
+          item.submenu ? (
+            <MobileNavSubmenu key={item.title} title={item.title} links={item.submenu} />
+          ) : (
+            <MobileNavLink key={item.title} href={item.href}>{item.title}</MobileNavLink>
+          )
+        ))}
         <hr className="m-2 border-slate-300/40" />
       </PopoverPanel>
+    </Popover>
+  )
+}
+
+function DesktopNavSubmenu({ title, links }) {
+  return (
+    <Popover className="relative">
+      {({ open }) => (
+        <>
+          <PopoverButton 
+            className={clsx(
+              'flex items-center gap-2 rounded-lg py-1 px-2 text-sm font-medium text-slate-700 transition',
+              open ? 'bg-slate-100' : 'hover:bg-slate-100'
+            )}
+          >
+            <span>{title}</span>
+            <svg
+              className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`}
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+            </svg>
+          </PopoverButton>
+          <PopoverPanel 
+            className="absolute left-1/2 z-10 mt-2 w-64 -translate-x-1/2 transform rounded-lg bg-white p-2 shadow-lg ring-1 ring-black ring-opacity-5"
+          >
+            <div className="py-1 space-y-1">
+              {links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  className="block rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-slate-100"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </div>
+          </PopoverPanel>
+        </>
+      )}
     </Popover>
   )
 }
@@ -117,15 +236,17 @@ export function Header() {
             <Link href="#" aria-label="Home">
               <Logo className="h-10 w-auto" />
             </Link>
-            <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="#nos-actions">Nos actions</NavLink>
-              <NavLink href="#temoignages">Témoignages</NavLink>
+            <div className="hidden md:flex md:items-center md:gap-x-4">
+              {navigationItems.map((item) => (
+                item.submenu ? (
+                  <DesktopNavSubmenu key={item.title} title={item.title} links={item.submenu} />
+                ) : (
+                  <NavLink key={item.title} href={item.href}>{item.title}</NavLink>
+                )
+              ))}
             </div>
           </div>
           <div className="flex items-center gap-x-5 md:gap-x-8">
-            <div className="hidden md:block">
-              <NavLink href="#"></NavLink>
-            </div>
             <Button 
               onClick={() => setIsPopupOpen(true)}
               color="blue" 
