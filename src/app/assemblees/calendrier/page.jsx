@@ -119,7 +119,7 @@ export default function Calendrier() {
           </div>
           
           {/* Historique des réunions */}
-          <div className="mt-32 border-t border-gray-200 pt-16">
+          <div className="mt-32 mb-12 border-t border-gray-200 pt-16">
             <h2 className="text-2xl font-semibold tracking-tight text-gray-900 mb-12">
               Historique des dernières réunions
             </h2>
