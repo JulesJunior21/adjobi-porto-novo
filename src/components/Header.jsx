@@ -72,48 +72,41 @@ const navigationItems = [
   {
     title: "L'association",
     submenu: [
-      { label: "Genèse et objectifs", href: "#genese-objectifs" },
-      { label: "Histoire de l'Épiphanie", href: "#histoire-epiphanie" },
-      { label: "Communication AGUEH/GOGAN", href: "#communication-agueh-gogan" },
-      { label: "Présentation du bureau exécutif", href: "#bureau-executif" },
+      { label: "Historique & missions", href: "#historique-missions" },
+      { label: "Bureau exécutif", href: "#bureau-executif" },
       { label: "Statuts & règlement", href: "#statuts-reglement" },
-      { label: "Journal officiel & autorisation", href: "#journal-officiel" },
     ],
   },
   {
     title: "Assemblées & réunions",
     submenu: [
-      { label: "Première AG", href: "#premiere-ag" },
+      { label: "AG & rencontres", href: "#ag-rencontres" },
       { label: "Procès-verbaux", href: "#proces-verbaux" },
-      { label: "Ordres du jour", href: "#ordres-jour" },
       { label: "Comptes rendus", href: "#comptes-rendus" },
     ],
   },
   {
     title: "Actions & activités",
     submenu: [
-      { label: "Journées citoyennes", href: "#journees-citoyennes" },
-      { label: "Dépistages", href: "#depistages" },
-      { label: "Chorégraphies & expositions", href: "#choregraphies-expositions" },
-      { label: "Visites à des personnalités", href: "#visites-personnalites" },
-      { label: "Participations officielles", href: "#participations-officielles" },
+      { label: "Actions citoyennes", href: "#actions-citoyennes" },
+      { label: "Santé & dépistages", href: "#sante-depistages" },
+      { label: "Photos & événements", href: "#photos-evenements" },
     ],
   },
   {
     title: "Commissions",
     submenu: [
-      { label: "Liste des commissions", href: "#liste-commissions" },
-      { label: "Membres par commission", href: "#membres-commission" },
+      { label: "Liste & membres", href: "#liste-membres" },
       { label: "Rapports d'activités", href: "#rapports-activites" },
+      { label: "Projets en cours", href: "#projets-cours" },
     ],
   },
   {
     title: "Documents",
     submenu: [
-      { label: "Conditions d'adhésion", href: "#conditions-adhesion" },
-      { label: "Formulaire d'adhésion", href: "#formulaire-adhesion" },
-      { label: "Dépliant", href: "#depliant" },
-      { label: "Courriers envoyés et reçus", href: "#courriers" },
+      { label: "Adhésion & formulaires", href: "#adhesion-formulaires" },
+      { label: "Dépliants & supports", href: "#depliants-supports" },
+      { label: "Archives officielles", href: "#archives-officielles" },
     ],
   },
   // Lien simple (sans sous-menu)
