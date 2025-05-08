@@ -78,15 +78,11 @@ const navigationItems = [
   },
   {
     title: "Assemblées & réunions",
-    submenu: [
-      { label: "Calendrier", href: "/assemblees/calendrier" },
-      { label: "Procès-verbaux", href: "/assemblees/proces-verbaux" },
-    ],
+    href: "/assemblees/calendrier"
   },
   {
-    title: "Actions & activités",
+    title: "Actions & activités", 
     submenu: [
-      { label: "Projets en cours", href: "/actions/projets" },
       { label: "Événements", href: "/actions/evenements" },
       { label: "Galerie", href: "/actions/galerie" },
     ],

@@ -207,9 +207,9 @@ export default function Calendrier() {
           
           {/* Historique des réunions */}
           <div className="mt-32 mb-12 border-t border-gray-200 pt-16">
-            <h2 className="text-2xl font-semibold tracking-tight text-gray-900 mb-12">
-              Historique des dernières réunions
-            </h2>
+          <h2 className="text-center text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl mb-16">
+            Historiques des dernières réunions
+          </h2>
             
             <div className="mx-auto grid max-w-2xl grid-cols-1 gap-8 overflow-hidden lg:mx-0 lg:max-w-none lg:grid-cols-4">
               {[
