@@ -13,6 +13,112 @@ export default function Calendrier() {
     setIsLoaded(true)
   }, [])
 
+  // Fonction pour créer un fichier ICS qui peut être téléchargé
+  const createICSFile = (event) => {
+    // Formatage des dates pour le format iCalendar
+    const formatDate = (dateStr, timeStr) => {
+      const [day, month, year] = dateStr.split(' ')[0].split('/');
+      const [hours, minutes] = timeStr.split(':');
+      
+      // Format: YYYYMMDDTHHmmss
+      return `${year}${month.padStart(2, '0')}${day.padStart(2, '0')}T${hours.padStart(2, '0')}${minutes.padStart(2, '0')}00`;
+    };
+    
+    // Extraction de la date et de l'heure
+    const dateParts = event.date.split(' ');
+    const day = dateParts[0];
+    const month = getMonthNumber(dateParts[1]);
+    const year = dateParts[2];
+    const formattedDate = `${day}/${month}/${year}`;
+    
+    // Création du contenu du fichier ICS
+    const start = formatDate(formattedDate, event.time);
+    
+    // On suppose que l'événement dure 2 heures
+    const hourEnd = parseInt(event.time.split(':')[0]) + 2;
+    const minutesEnd = event.time.split(':')[1];
+    const endTime = `${hourEnd.toString().padStart(2, '0')}:${minutesEnd}`;
+    const end = formatDate(formattedDate, endTime);
+    
+    // Génération du contenu du fichier ICS
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      `SUMMARY:${event.title}`,
+      `DTSTART:${start}`,
+      `DTEND:${end}`,
+      `LOCATION:${event.location}`,
+      `DESCRIPTION:${event.description}`,
+      'STATUS:CONFIRMED',
+      'SEQUENCE:0',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].join('\r\n');
+    
+    return icsContent;
+  };
+
+  // Fonction pour télécharger l'événement
+  const downloadEvent = (event) => {
+    const icsContent = createICSFile(event);
+    
+    // Création d'un élément <a> pour déclencher le téléchargement
+    const element = document.createElement('a');
+    element.setAttribute('href', 'data:text/calendar;charset=utf-8,' + encodeURIComponent(icsContent));
+    element.setAttribute('download', `${event.title.replace(/\s+/g, '_')}.ics`);
+    
+    element.style.display = 'none';
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
+  // Fonction pour convertir le nom du mois en numéro
+  const getMonthNumber = (monthName) => {
+    const months = {
+      'janvier': '01',
+      'février': '02',
+      'mars': '03',
+      'avril': '04',
+      'mai': '05',
+      'juin': '06',
+      'juillet': '07',
+      'août': '08',
+      'septembre': '09',
+      'octobre': '10',
+      'novembre': '11',
+      'décembre': '12'
+    };
+    return months[monthName.toLowerCase()] || '01';
+  };
+
+  // Événements avec formatage de date corrigé pour faciliter le traitement
+  const events = [
+    {
+      date: "15 juin 2025",
+      time: "18:30",
+      location: "Salle Communale de Porto-Novo",
+      title: "Assemblée Générale Annuelle",
+      description: "Présentation du bilan annuel, élection du nouveau bureau et discussion des projets futurs."
+    },
+    {
+      date: "28 juillet 2025",
+      time: "17:00",
+      location: "Maison du Patrimoine",
+      title: "Réunion Commission Patrimoine",
+      description: "Point sur les actions de préservation en cours et planification de la journée du patrimoine."
+    },
+    {
+      date: "10 septembre 2025",
+      time: "19:00",
+      location: "Jardin public central",
+      title: "Conseil d'Administration",
+      description: "Réunion trimestrielle pour le suivi des projets et la préparation des activités de fin d'année."
+    }
+  ];
+
   return (
     <div className="bg-white">
       <Header />
@@ -45,29 +151,7 @@ export default function Calendrier() {
           </h2>
           
           <div className="mx-auto grid max-w-2xl grid-cols-1 gap-y-20 gap-x-8 lg:mx-0 lg:max-w-none lg:grid-cols-3">
-            {[
-              {
-                date: "15 juin 2025",
-                time: "18:30",
-                location: "Salle Communale de Porto-Novo",
-                title: "Assemblée Générale Annuelle",
-                description: "Présentation du bilan annuel, élection du nouveau bureau et discussion des projets futurs."
-              },
-              {
-                date: "28 juillet 2025",
-                time: "17:00",
-                location: "Maison du Patrimoine",
-                title: "Réunion Commission Patrimoine",
-                description: "Point sur les actions de préservation en cours et planification de la journée du patrimoine."
-              },
-              {
-                date: "10 septembre 2025",
-                time: "19:00",
-                location: "Jardin public central",
-                title: "Conseil d'Administration",
-                description: "Réunion trimestrielle pour le suivi des projets et la préparation des activités de fin d'année."
-              },
-            ].map((event, index) => (
+            {events.map((event, index) => (
               <motion.div 
                 key={event.title}
                 initial={{ opacity: 0, y: 50 }}
@@ -106,12 +190,15 @@ export default function Calendrier() {
                     whileHover={{ scale: 1.03 }}
                     whileTap={{ scale: 0.97 }}
                   >
-                    <a href="#" className="inline-flex items-center justify-center gap-x-2 rounded-md bg-[#58c469] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#4ab059] transition-colors">
+                    <button 
+                      onClick={() => downloadEvent(event)}
+                      className="inline-flex items-center justify-center gap-x-2 rounded-md bg-[#58c469] px-5 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-[#4ab059] transition-colors"
+                    >
                       <span>Ajouter à mon agenda</span>
                       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 9v7.5m-9-6h.008v.008H12v-.008zM12 15h.008v.008H12V15zm0 2.25h.008v.008H12v-.008zM9.75 15h.008v.008H9.75V15zm0 2.25h.008v.008H9.75v-.008zM7.5 15h.008v.008H7.5V15zm0 2.25h.008v.008H7.5v-.008zm6.75-4.5h.008v.008h-.008v-.008zm0 2.25h.008v.008h-.008V15zm0 2.25h.008v.008h-.008v-.008zm2.25-4.5h.008v.008H16.5v-.008zm0 2.25h.008v.008H16.5V15z" />
                       </svg>
-                    </a>
+                    </button>
                   </motion.div>
                 </div>
               </motion.div>
