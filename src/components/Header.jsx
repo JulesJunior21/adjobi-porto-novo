@@ -74,7 +74,6 @@ const navigationItems = [
     submenu: [
       { label: "Qui sommes-nous", href: "/association/qui-sommes-nous" },
       { label: "Notre histoire", href: "/association/notre-histoire" },
-      { label: "L'équipe", href: "/association/equipe" },
     ],
   },
   {
