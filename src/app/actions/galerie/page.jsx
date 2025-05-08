@@ -5,11 +5,38 @@ import { Footer } from '@/components/Footer'
 import { Container } from '@/components/Container'
 import { useState } from 'react'
 
+// Importer les images directement depuis les dossiers publics
+import DSC0429 from '@/images/DSC_0429.JPG'
+import DSC1406 from '@/images/DSC_1406.JPG'
+import DSC1573 from '@/images/DSC_1573.JPG'
+import DSC1581 from '@/images/DSC_1581.JPG'
+import DSC1601 from '@/images/DSC_1601.JPG'
+import DSC1605 from '@/images/DSC_1605.JPG'
+import DSC2216 from '@/images/DSC_2216.JPG'
+import DSC2444 from '@/images/DSC_2444.JPG'
+import DSC2826 from '@/images/DSC_2826.JPG'
+
 export default function Galerie() {
   // État pour un effet simple de zoom sur les images au clic
   const [selectedImage, setSelectedImage] = useState(null);
 
   const closeModal = () => setSelectedImage(null);
+
+  // Créer un mapping des chemins d'images pour faciliter leur utilisation
+  const imageMapping = {
+    'patrimoine-1': DSC1406,
+    'patrimoine-2': DSC1573,
+    'patrimoine-3': DSC1581,
+    'patrimoine-4': DSC1601,
+    'patrimoine-5': DSC1605,
+    'evenement-1': DSC0429,
+    'evenement-2': DSC2216,
+    'evenement-3': DSC2444,
+    'evenement-4': DSC2826,
+    'projet-1': DSC0429,
+    'projet-2': DSC1605,
+    'projet-3': DSC2826,
+  };
 
   return (
     <div className="bg-white">
@@ -49,9 +76,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)] lg:rounded-tl-[calc(2rem+1px)]">
                   <img
                     alt="Grande Mosquée de Porto-Novo"
-                    src="/images/galerie/patrimoine-1.jpg"
+                    src={imageMapping['patrimoine-1'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/patrimoine-1.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['patrimoine-1'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Lieu emblématique</h3>
@@ -70,9 +97,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-tr-[calc(2rem+1px)]">
                   <img
                     alt="Palais royal de Porto-Novo"
-                    src="/images/galerie/patrimoine-2.jpg"
+                    src={imageMapping['patrimoine-2'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/patrimoine-2.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['patrimoine-2'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Histoire royale</h3>
@@ -91,9 +118,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-bl-[calc(2rem+1px)]">
                   <img
                     alt="Quartier colonial"
-                    src="/images/galerie/patrimoine-3.jpg"
+                    src={imageMapping['patrimoine-3'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/patrimoine-3.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['patrimoine-3'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Architecture coloniale</h3>
@@ -111,9 +138,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Musée ethnographique"
-                    src="/images/galerie/patrimoine-4.jpg"
+                    src={imageMapping['patrimoine-4'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/patrimoine-4.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['patrimoine-4'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Culture</h3>
@@ -131,9 +158,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-b-[calc(2rem+1px)] lg:rounded-br-[calc(2rem+1px)]">
                   <img
                     alt="Jardin des Plantes et de la Nature"
-                    src="/images/galerie/patrimoine-5.jpg"
+                    src={imageMapping['patrimoine-5'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/patrimoine-5.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['patrimoine-5'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Environnement</h3>
@@ -162,9 +189,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Assemblée générale 2024"
-                    src="/images/galerie/evenement-1.jpg"
+                    src={imageMapping['evenement-1'].src}
                     className="h-[30rem] w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/evenement-1.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['evenement-1'].src)}
                   />
                   <div className="p-6 pt-4 bg-white">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Rencontre annuelle</h3>
@@ -183,9 +210,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Journée culturelle"
-                    src="/images/galerie/evenement-2.jpg"
+                    src={imageMapping['evenement-2'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/evenement-2.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['evenement-2'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Culture</h3>
@@ -203,9 +230,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Atelier de médiation"
-                    src="/images/galerie/evenement-3.jpg"
+                    src={imageMapping['evenement-3'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/evenement-3.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['evenement-3'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Éducation</h3>
@@ -220,9 +247,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Forum citoyen"
-                    src="/images/galerie/evenement-4.jpg"
+                    src={imageMapping['evenement-4'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/evenement-4.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['evenement-4'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Engagement</h3>
@@ -251,9 +278,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Nettoyage des berges"
-                    src="/images/galerie/projet-1.jpg"
+                    src={imageMapping['projet-1'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/projet-1.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['projet-1'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Environnement</h3>
@@ -271,9 +298,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Rénovation de façade"
-                    src="/images/galerie/projet-2.jpg"
+                    src={imageMapping['projet-2'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/projet-2.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['projet-2'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Patrimoine</h3>
@@ -291,9 +318,9 @@ export default function Galerie() {
                 <div className="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
                   <img
                     alt="Jardin communautaire"
-                    src="/images/galerie/projet-3.jpg"
+                    src={imageMapping['projet-3'].src}
                     className="h-80 w-full object-cover cursor-pointer"
-                    onClick={() => setSelectedImage("/images/galerie/projet-3.jpg")}
+                    onClick={() => setSelectedImage(imageMapping['projet-3'].src)}
                   />
                   <div className="p-6 pt-4">
                     <h3 className="text-sm/4 font-semibold text-[#58c469]">Cadre de vie</h3>
