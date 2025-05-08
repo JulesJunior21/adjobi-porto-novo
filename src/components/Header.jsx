@@ -100,11 +100,7 @@ const navigationItems = [
   },
   {
     title: "Documents",
-    submenu: [
-      { label: "Statuts", href: "/documents/statuts" },
-      { label: "Règlement intérieur", href: "/documents/reglement" },
-      { label: "Rapports annuels", href: "/documents/rapports" },
-    ],
+    href: "/documents"
   },
   { title: "Témoignages", href: "#temoignages" },
 ];
