@@ -72,39 +72,39 @@ const navigationItems = [
   {
     title: "L'association",
     submenu: [
-      { label: "Qui sommes-nous", href: "#qui-sommes-nous" },
-      { label: "Notre histoire", href: "#notre-histoire" },
-      { label: "L'équipe", href: "#equipe" },
+      { label: "Qui sommes-nous", href: "/association/qui-sommes-nous" },
+      { label: "Notre histoire", href: "/association/notre-histoire" },
+      { label: "L'équipe", href: "/association/equipe" },
     ],
   },
   {
     title: "Assemblées & réunions",
     submenu: [
-      { label: "Calendrier", href: "#calendrier" },
-      { label: "Procès-verbaux", href: "#proces-verbaux" },
+      { label: "Calendrier", href: "/assemblees/calendrier" },
+      { label: "Procès-verbaux", href: "/assemblees/proces-verbaux" },
     ],
   },
   {
     title: "Actions & activités",
     submenu: [
-      { label: "Projets en cours", href: "#projets" },
-      { label: "Événements", href: "#evenements" },
-      { label: "Galerie", href: "#galerie" },
+      { label: "Projets en cours", href: "/actions/projets" },
+      { label: "Événements", href: "/actions/evenements" },
+      { label: "Galerie", href: "/actions/galerie" },
     ],
   },
   {
     title: "Commissions",
     submenu: [
-      { label: "Liste des commissions", href: "#commissions" },
-      { label: "S'engager", href: "#engager" },
+      { label: "Liste des commissions", href: "/commissions/liste" },
+      { label: "S'engager", href: "/commissions/engager" },
     ],
   },
   {
     title: "Documents",
     submenu: [
-      { label: "Statuts", href: "#statuts" },
-      { label: "Règlement intérieur", href: "#reglement" },
-      { label: "Rapports annuels", href: "#rapports" },
+      { label: "Statuts", href: "/documents/statuts" },
+      { label: "Règlement intérieur", href: "/documents/reglement" },
+      { label: "Rapports annuels", href: "/documents/rapports" },
     ],
   },
   { title: "Témoignages", href: "#temoignages" },
