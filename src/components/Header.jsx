@@ -140,9 +140,16 @@ export function Header() {
 
   return (
     <header className="py-6 relative bg-white">
-      {/* Bannière beta */}
-      <div className="absolute top-0 right-0 overflow-hidden w-28 h-28 z-10">
+      {/* Bannière beta - Modification du positionnement */}
+      <div className="absolute top-0 right-0 overflow-hidden w-28 h-28 z-10 lg:block hidden">
         <div className="absolute top-[14px] right-[-35px] rotate-45 bg-[#ff6b6b] text-white py-1 px-10 text-center text-sm font-bold shadow-md">
+          BETA
+        </div>
+      </div>
+      
+      {/* Version alternative pour mobile */}
+      <div className="absolute top-0 left-0 w-full lg:hidden">
+        <div className="bg-[#ff6b6b] text-white py-1 px-2 text-center text-xs font-bold shadow-md">
           BETA
         </div>
       </div>
