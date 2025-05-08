@@ -1,80 +1,69 @@
 'use client'
 
+import { Fragment, useState } from 'react'
 import Link from 'next/link'
 import {
   Popover,
   PopoverButton,
-  PopoverBackdrop,
+  PopoverGroup,
   PopoverPanel,
+  Dialog,
+  DialogPanel,
+  Disclosure,
+  DisclosureButton,
+  DisclosurePanel,
 } from '@headlessui/react'
 import clsx from 'clsx'
-import { useState } from 'react'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
 
-function MobileNavLink({ href, children }) {
-  return (
-    <PopoverButton as={Link} href={href} className="block w-full p-2">
-      {children}
-    </PopoverButton>
-  )
-}
-
-function MobileNavSubmenu({ title, links }) {
-  return (
-    <Popover className="relative w-full">
-      {({ open }) => (
-        <>
-          <PopoverButton className="flex w-full items-center justify-between p-2">
-            <span>{title}</span>
-            <svg
-              className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </PopoverButton>
-          <PopoverPanel className="pl-4 py-2 space-y-1">
-            {links.map((link) => (
-              <MobileNavLink key={link.href} href={link.href}>
-                {link.label}
-              </MobileNavLink>
-            ))}
-          </PopoverPanel>
-        </>
-      )}
-    </Popover>
-  )
-}
-
-function MobileNavIcon({ open }) {
+function ChevronDownIcon(props) {
   return (
     <svg
-      aria-hidden="true"
-      className="h-3.5 w-3.5 overflow-visible stroke-slate-700"
+      xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      strokeWidth={2}
-      strokeLinecap="round"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      aria-hidden="true"
+      {...props}
     >
-      <path
-        d="M0 1H14M0 7H14M0 13H14"
-        className={clsx(
-          'origin-center transition',
-          open && 'scale-90 opacity-0'
-        )}
-      />
-      <path
-        d="M2 2L12 12M12 2L2 12"
-        className={clsx(
-          'origin-center transition',
-          !open && 'scale-90 opacity-0'
-        )}
-      />
+      <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+    </svg>
+  )
+}
+
+function ChevronRightIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      aria-hidden="true"
+      {...props}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+    </svg>
+  )
+}
+
+function XMarkIcon(props) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      aria-hidden="true"
+      {...props}
+    >
+      <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
     </svg>
   )
 }
@@ -131,78 +120,6 @@ const navigationItems = [
   { title: "Témoignages", href: "#temoignages" },
 ];
 
-function MobileNavigation() {
-  return (
-    <Popover>
-      <PopoverButton
-        className="relative z-10 flex h-8 w-8 items-center justify-center focus:not-data-focus:outline-hidden"
-        aria-label="Toggle Navigation"
-      >
-        {({ open }) => <MobileNavIcon open={open} />}
-      </PopoverButton>
-      <PopoverBackdrop
-        transition
-        className="fixed inset-0 bg-slate-300/50 duration-150 data-closed:opacity-0 data-enter:ease-out data-leave:ease-in"
-      />
-      <PopoverPanel
-        transition
-        className="absolute inset-x-0 top-full mt-4 flex origin-top flex-col rounded-2xl bg-white p-4 text-lg tracking-tight text-slate-900 shadow-xl ring-1 ring-slate-900/5 data-closed:scale-95 data-closed:opacity-0 data-enter:duration-150 data-enter:ease-out data-leave:duration-100 data-leave:ease-in"
-      >
-        {navigationItems.map((item) => (
-          item.submenu ? (
-            <MobileNavSubmenu key={item.title} title={item.title} links={item.submenu} />
-          ) : (
-            <MobileNavLink key={item.title} href={item.href}>{item.title}</MobileNavLink>
-          )
-        ))}
-        <hr className="m-2 border-slate-300/40" />
-      </PopoverPanel>
-    </Popover>
-  )
-}
-
-function DesktopNavSubmenu({ title, links }) {
-  return (
-    <Popover className="relative">
-      {({ open }) => (
-        <>
-          <PopoverButton 
-            className={clsx(
-              'flex items-center gap-2 rounded-lg py-1 px-2 text-sm font-medium text-slate-700 transition',
-              open ? 'bg-slate-100' : 'hover:bg-slate-100'
-            )}
-          >
-            <span>{title}</span>
-            <svg
-              className={`h-4 w-4 transition-transform ${open ? 'rotate-180' : ''}`}
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-            </svg>
-          </PopoverButton>
-          <PopoverPanel 
-            className="absolute left-1/2 z-10 mt-2 w-64 -translate-x-1/2 transform rounded-lg bg-white p-2 shadow-lg ring-1 ring-black ring-opacity-5"
-          >
-            <div className="py-1 space-y-1">
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className="block rounded-md px-3 py-2 text-sm text-slate-700 hover:bg-slate-100"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </div>
-          </PopoverPanel>
-        </>
-      )}
-    </Popover>
-  )
-}
-
 function BetaPopup({ isOpen, onClose }) {
   if (!isOpen) return null;
 
@@ -229,9 +146,10 @@ function BetaPopup({ isOpen, onClose }) {
 
 export function Header() {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="py-10 relative">
+    <header className="py-6 relative bg-white">
       {/* Bannière beta */}
       <div className="absolute top-0 right-0 overflow-hidden w-28 h-28 z-10">
         <div className="absolute top-[14px] right-[-35px] rotate-45 bg-[#ff6b6b] text-white py-1 px-10 text-center text-sm font-bold shadow-md">
@@ -240,37 +158,152 @@ export function Header() {
       </div>
 
       <Container>
-        <nav className="relative z-50 flex justify-between">
-          <div className="flex items-center md:gap-x-12">
-            <Link href="#" aria-label="Home">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between lg:px-8" aria-label="Global">
+          <div className="flex lg:flex-1">
+            <Link href="#" className="-m-1.5 p-1.5" aria-label="Home">
+              <span className="sr-only">Association ADJOBI Porto-Novo</span>
               <Logo className="h-10 w-auto" />
             </Link>
-            <div className="hidden md:flex md:items-center md:gap-x-4">
-              {navigationItems.map((item) => (
-                item.submenu ? (
-                  <DesktopNavSubmenu key={item.title} title={item.title} links={item.submenu} />
-                ) : (
-                  <NavLink key={item.title} href={item.href}>{item.title}</NavLink>
-                )
-              ))}
-            </div>
           </div>
-          <div className="flex items-center gap-x-5 md:gap-x-8">
+          
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-slate-700"
+              onClick={() => setMobileMenuOpen(true)}
+            >
+              <span className="sr-only">Ouvrir le menu principal</span>
+              <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" aria-hidden="true">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+              </svg>
+            </button>
+          </div>
+          
+          <PopoverGroup className="hidden lg:flex lg:gap-x-6">
+            {navigationItems.map((item) => (
+              item.submenu ? (
+                <Popover key={item.title} className="relative">
+                  <PopoverButton className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-slate-700 hover:text-slate-900">
+                    {item.title}
+                    <ChevronDownIcon className="h-4 w-4 flex-none text-gray-400" aria-hidden="true" />
+                  </PopoverButton>
+
+                  <PopoverPanel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+                    <div className="p-4">
+                      {item.submenu.map((subItem) => (
+                        <div
+                          key={subItem.href}
+                          className="group relative flex items-center gap-x-6 rounded-lg p-2 text-sm leading-6 hover:bg-gray-50"
+                        >
+                          <div className="flex-auto">
+                            <a href={subItem.href} className="block font-semibold text-gray-900">
+                              {subItem.label}
+                              <span className="absolute inset-0" />
+                            </a>
+                          </div>
+                          <ChevronRightIcon className="h-4 w-4 flex-none text-gray-400 group-hover:text-gray-600" aria-hidden="true" />
+                        </div>
+                      ))}
+                    </div>
+                  </PopoverPanel>
+                </Popover>
+              ) : (
+                <a key={item.title} href={item.href} className="text-sm font-semibold leading-6 text-slate-700 hover:text-slate-900">
+                  {item.title}
+                </a>
+              )
+            ))}
+          </PopoverGroup>
+          
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
             <Button 
               onClick={() => setIsPopupOpen(true)}
               color="blue" 
               className="!bg-[#58c469] !hover:bg-[#4ab059] text-white"
             >
-              <span>
-                Nous rejoindre
-              </span>
+              <span>Nous rejoindre</span>
             </Button>
-            <div className="-mr-1 md:hidden">
-              <MobileNavigation />
-            </div>
           </div>
         </nav>
       </Container>
+
+      {/* Mobile menu */}
+      <Dialog as="div" className="lg:hidden" open={mobileMenuOpen} onClose={setMobileMenuOpen}>
+        <div className="fixed inset-0 z-50" />
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+          <div className="flex items-center justify-between">
+            <Link href="#" className="-m-1.5 p-1.5" aria-label="Home">
+              <span className="sr-only">Association ADJOBI Porto-Novo</span>
+              <Logo className="h-8 w-auto" />
+            </Link>
+            <button
+              type="button"
+              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <span className="sr-only">Fermer le menu</span>
+              <XMarkIcon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <div className="mt-6 flow-root">
+            <div className="-my-6 divide-y divide-gray-500/10">
+              <div className="space-y-2 py-6">
+                {navigationItems.map((item) => (
+                  item.submenu ? (
+                    <Disclosure as="div" key={item.title} className="-mx-3">
+                      {({ open }) => (
+                        <>
+                          <DisclosureButton className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-slate-700 hover:bg-gray-50">
+                            {item.title}
+                            <ChevronDownIcon
+                              className={clsx(
+                                open ? 'rotate-180' : '',
+                                'h-5 w-5 flex-none'
+                              )}
+                              aria-hidden="true"
+                            />
+                          </DisclosureButton>
+                          <DisclosurePanel className="mt-2 space-y-2">
+                            {item.submenu.map((subItem) => (
+                              <DisclosureButton
+                                key={subItem.href}
+                                as="a"
+                                href={subItem.href}
+                                className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-600 hover:bg-gray-50"
+                              >
+                                {subItem.label}
+                              </DisclosureButton>
+                            ))}
+                          </DisclosurePanel>
+                        </>
+                      )}
+                    </Disclosure>
+                  ) : (
+                    <a
+                      key={item.title}
+                      href={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-slate-700 hover:bg-gray-50"
+                    >
+                      {item.title}
+                    </a>
+                  )
+                ))}
+              </div>
+              <div className="py-6">
+                <button
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setIsPopupOpen(true);
+                  }}
+                  className="-mx-3 block w-full rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-white bg-[#58c469] hover:bg-[#4ab059]"
+                >
+                  Nous rejoindre
+                </button>
+              </div>
+            </div>
+          </div>
+        </DialogPanel>
+      </Dialog>
 
       {/* Popup */}
       <BetaPopup 
