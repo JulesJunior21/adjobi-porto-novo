@@ -72,44 +72,41 @@ const navigationItems = [
   {
     title: "L'association",
     submenu: [
-      { label: "Historique & missions", href: "#historique-missions" },
-      { label: "Bureau exécutif", href: "#bureau-executif" },
-      { label: "Statuts & règlement", href: "#statuts-reglement" },
+      { label: "Qui sommes-nous", href: "#qui-sommes-nous" },
+      { label: "Notre histoire", href: "#notre-histoire" },
+      { label: "L'équipe", href: "#equipe" },
     ],
   },
   {
     title: "Assemblées & réunions",
     submenu: [
-      { label: "AG & rencontres", href: "#ag-rencontres" },
+      { label: "Calendrier", href: "#calendrier" },
       { label: "Procès-verbaux", href: "#proces-verbaux" },
-      { label: "Comptes rendus", href: "#comptes-rendus" },
     ],
   },
   {
     title: "Actions & activités",
     submenu: [
-      { label: "Actions citoyennes", href: "#actions-citoyennes" },
-      { label: "Santé & dépistages", href: "#sante-depistages" },
-      { label: "Photos & événements", href: "#photos-evenements" },
+      { label: "Projets en cours", href: "#projets" },
+      { label: "Événements", href: "#evenements" },
+      { label: "Galerie", href: "#galerie" },
     ],
   },
   {
     title: "Commissions",
     submenu: [
-      { label: "Liste & membres", href: "#liste-membres" },
-      { label: "Rapports d'activités", href: "#rapports-activites" },
-      { label: "Projets en cours", href: "#projets-cours" },
+      { label: "Liste des commissions", href: "#commissions" },
+      { label: "S'engager", href: "#engager" },
     ],
   },
   {
     title: "Documents",
     submenu: [
-      { label: "Adhésion & formulaires", href: "#adhesion-formulaires" },
-      { label: "Dépliants & supports", href: "#depliants-supports" },
-      { label: "Archives officielles", href: "#archives-officielles" },
+      { label: "Statuts", href: "#statuts" },
+      { label: "Règlement intérieur", href: "#reglement" },
+      { label: "Rapports annuels", href: "#rapports" },
     ],
   },
-  // Lien simple (sans sous-menu)
   { title: "Témoignages", href: "#temoignages" },
 ];
 
