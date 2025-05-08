@@ -83,42 +83,51 @@ const navigationItems = [
   {
     title: "L'association",
     submenu: [
-      { label: "Qui sommes-nous", href: "#qui-sommes-nous" },
-      { label: "Notre histoire", href: "#notre-histoire" },
-      { label: "L'équipe", href: "#equipe" },
+      { label: "Genèse et objectifs", href: "#genese-objectifs" },
+      { label: "Histoire de l'Épiphanie", href: "#histoire-epiphanie" },
+      { label: "Communication AGUEH/GOGAN", href: "#communication-agueh-gogan" },
+      { label: "Présentation du bureau exécutif", href: "#bureau-executif" },
+      { label: "Statuts & règlement", href: "#statuts-reglement" },
+      { label: "Journal officiel & autorisation", href: "#journal-officiel" },
     ],
   },
   {
     title: "Assemblées & réunions",
     submenu: [
-      { label: "Calendrier", href: "#calendrier" },
+      { label: "Première AG", href: "#premiere-ag" },
       { label: "Procès-verbaux", href: "#proces-verbaux" },
+      { label: "Ordres du jour", href: "#ordres-jour" },
+      { label: "Comptes rendus", href: "#comptes-rendus" },
     ],
   },
   {
     title: "Actions & activités",
     submenu: [
-      { label: "Projets en cours", href: "#projets" },
-      { label: "Événements", href: "#evenements" },
-      { label: "Galerie", href: "#galerie" },
+      { label: "Journées citoyennes", href: "#journees-citoyennes" },
+      { label: "Dépistages", href: "#depistages" },
+      { label: "Chorégraphies & expositions", href: "#choregraphies-expositions" },
+      { label: "Visites à des personnalités", href: "#visites-personnalites" },
+      { label: "Participations officielles", href: "#participations-officielles" },
     ],
   },
   {
     title: "Commissions",
     submenu: [
-      { label: "Liste des commissions", href: "#commissions" },
-      { label: "S'engager", href: "#engager" },
+      { label: "Liste des commissions", href: "#liste-commissions" },
+      { label: "Membres par commission", href: "#membres-commission" },
+      { label: "Rapports d'activités", href: "#rapports-activites" },
     ],
   },
   {
     title: "Documents",
     submenu: [
-      { label: "Statuts", href: "#statuts" },
-      { label: "Règlement intérieur", href: "#reglement" },
-      { label: "Rapports annuels", href: "#rapports" },
+      { label: "Conditions d'adhésion", href: "#conditions-adhesion" },
+      { label: "Formulaire d'adhésion", href: "#formulaire-adhesion" },
+      { label: "Dépliant", href: "#depliant" },
+      { label: "Courriers envoyés et reçus", href: "#courriers" },
     ],
   },
-  // Liens simples (sans sous-menu)
+  // Lien simple (sans sous-menu)
   { title: "Témoignages", href: "#temoignages" },
 ];
 
