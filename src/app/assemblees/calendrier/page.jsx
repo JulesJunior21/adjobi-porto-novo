@@ -66,16 +66,7 @@ export default function Calendrier() {
           </motion.div>
         </div>
         
-        {/* Historique des réunions - Section vide en attendant */}
-        <div className="mt-32 mb-12 border-t border-gray-200 pt-16 pb-8">
-          <h2 className="text-center text-3xl font-semibold tracking-tight text-gray-900 sm:text-4xl mb-16">
-            Historique des réunions
-          </h2>
-          
-          <p className="text-center text-gray-600">
-            Le compte-rendu des réunions précédentes sera bientôt disponible.
-          </p>
-        </div>
+       
       </main>
       <Footer />
     </div>
